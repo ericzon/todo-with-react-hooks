@@ -11,12 +11,12 @@ function TodoSettings(props) {
          <ul>
             <li>
                <button onClick={onSelectAll}>
-                  Select all
+                  Mark all
                </button>
             </li>
             <li>
                <button onClick={onDeselectAll}>
-                  Deselect all
+                  Unmark all
                </button>
             </li>
          </ul>

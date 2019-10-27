@@ -2,13 +2,13 @@ import React from 'react';
 
 import TodoRow from '../todo-row';
 
-function TodoList({type, items, onToggleItem}) {
+function TodoList({type, items, onUpdate}) {
    return <section className={type + '-main-items'}>
             {type.toUpperCase()} items:
             {items.length ? 
                <ul className={type + '-list'}>
                   {items.map((item, idx) => {
-                     return <TodoRow type={type} key={idx} item={item} onToggleItem={onToggleItem} />;
+                     return <TodoRow type={type} key={idx} item={item} onToggleItem={onUpdate} />;
                   })}
                </ul> : 
             <div>

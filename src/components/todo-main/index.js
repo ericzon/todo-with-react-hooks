@@ -13,10 +13,14 @@ function TodoMain(props) {
 
    const onSelectAllFn = () => {
       console.log('onSelectAll');
+      setDoneItems([...doneItems, ...todoItems]);
+      setTodoItems([]);
    };
 
    const onDeselectAllFn = () => {
       console.log('onDeselectAll');
+      setTodoItems([...doneItems, ...todoItems]);
+      setDoneItems([]);
    };
 
    const addNewItem = () => {
@@ -32,8 +36,6 @@ function TodoMain(props) {
          elem.value = '';
       }
    };
-
-   const onToggleItemFn = itemChanged => updateLists(itemChanged);
 
    const updateLists = itemChanged => {
       if (itemChanged.state) {
@@ -75,9 +77,9 @@ function TodoMain(props) {
             <button onClick={addNewItem}>Add</button>
          </div>
 
-         {<TodoList type={'todo'} items={todoItems} onToggleItem={onToggleItemFn} />}
+         {<TodoList type={'todo'} items={todoItems} onUpdate={updateLists} />}
          <div>------------------------</div>
-         {<TodoList type={'done'} items={doneItems} onToggleItem={onToggleItemFn} />}
+         {<TodoList type={'done'} items={doneItems} onUpdate={updateLists} />}
 
       </div>
    );
