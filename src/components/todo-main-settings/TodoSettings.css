@@ -1,0 +1,7 @@
+.todo-settings-main ul {
+   display: flex;
+}
+
+.todo-settings-main li {
+   margin-right: 15px;
+}
