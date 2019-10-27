@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import itemList from '../../settings';
 import TodoSettings from '../todo-main-settings';
 import TodoFeedback from '../todo-feedback';
-import TodoRow from '../todo-row';
+import TodoList from '../todo-list';
 
 const findItemById = (list, item) => list.findIndex(listItem => listItem.id === item.id);
 
@@ -21,21 +21,19 @@ function TodoMain(props) {
 
    const addNewItem = () => {
       const elem = document.getElementById('new-item');
- console.log('addNewItem -> ', elem.value);
+
       if (elem && elem.value !== '') {
          setTodoItems([{
             id: todoItems.length,
             text: elem.value,
             value: todoItems.length
          }, ...todoItems]);
+
          elem.value = '';
       }
    };
 
-   const onToggleItemFn = itemChanged => {
-      console.log('onToggleItemFn! ',itemChanged);
-      updateLists(itemChanged);
-   };
+   const onToggleItemFn = itemChanged => updateLists(itemChanged);
 
    const updateLists = itemChanged => {
       if (itemChanged.state) {
@@ -72,31 +70,15 @@ function TodoMain(props) {
          <TodoFeedback todoItems={todoItems} />
          <TodoSettings onSelectAll={onSelectAllFn} onDeselectAll={onDeselectAllFn} />
 
-         {todoItems.length ?
-            <section className="todo-main-items">
-               To-Do items:
-               <ul className="todo-list">
-                  <li className="todo-item">
-                     <input id="new-item" type="text" placeholder="New item..." />
-                     <button onClick={addNewItem}>Add</button>
-                  </li>
-                  {todoItems.map((item, idx) => {
-                     return <TodoRow type={'todo'} key={idx} item={item} onToggleItem={onToggleItemFn} />;
-                  })}
-               </ul>
-            </section>: ''}
+         <div>
+            <input id="new-item" type="text" placeholder="New item..." />
+            <button onClick={addNewItem}>Add</button>
+         </div>
 
+         {<TodoList type={'todo'} items={todoItems} onToggleItem={onToggleItemFn} />}
          <div>------------------------</div>
+         {<TodoList type={'done'} items={doneItems} onToggleItem={onToggleItemFn} />}
 
-         {doneItems.length ? 
-            <section className="done-main-items">
-               Done items:
-               <ul className="done-list">
-                  {doneItems.map((item, idx) => {
-                     return <TodoRow type={'done'} key={idx} item={item} onToggleItem={onToggleItemFn} />;
-                  })}
-               </ul>
-            </section> : ''}
       </div>
    );
 }
