@@ -1,5 +1,6 @@
 
 import React from 'react';
+import './ItemRow.css';
 
 function TodoRow({item, onToggleItem, type}) {
    const {text, id, value} = item;
@@ -14,7 +15,7 @@ function TodoRow({item, onToggleItem, type}) {
       });
    };
 
-   return <li className="todo-item">
+   return <li className={type + '-item'}>
             <input type="checkbox" 
                   onChange={toggleState} 
                   checked={type === 'done'}
