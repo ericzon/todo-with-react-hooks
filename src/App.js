@@ -25,7 +25,7 @@ const useAsyncHook = () => {
     }
 
     getContent();
-  }, [1]);
+  }, []);
 
   return [isLoading, content];
 }
