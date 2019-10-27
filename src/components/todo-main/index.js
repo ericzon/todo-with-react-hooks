@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import itemList from '../../settings';
 import TodoSettings from '../todo-main-settings';
+import TodoFeedback from '../todo-feedback';
 import TodoRow from '../todo-row';
 
 const findItemById = (list, item) => list.findIndex(listItem => listItem.id === item.id);
@@ -55,11 +56,7 @@ function TodoMain(props) {
       <div>
          <h1>My ToDo List</h1>
 
-         <section className="todo-main-feedback">
-            {todoItems.length ? 
-               `You have ${todoItems.length} tasks to do!`:
-               `Hooray! You don't have any pending task!`}
-         </section>
+         <TodoFeedback todoItems={todoItems} />
 
          <TodoSettings onSelectAll={onSelectAllFn} onDeselectAll={onDeselectAllFn} />
 
