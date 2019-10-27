@@ -37,10 +37,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+      </header>
+      <section className="main-section">
         {isLoading ? 
           <div>Loading...</div> :
           <TodoMain content={content} />}
-      </header>
+      </section>
       
     </div>
   );

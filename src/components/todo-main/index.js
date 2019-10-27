@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+import './TodoMain.css';
 import TodoSettings from '../todo-main-settings';
 import TodoFeedback from '../todo-feedback';
 import TodoList from '../todo-list';
@@ -73,10 +74,10 @@ function TodoMain({content}) {
          <TodoFeedback todoItems={todoItems} />
          <TodoSettings onSelectAll={onSelectAllFn} onDeselectAll={onDeselectAllFn} />
 
-         <div>
+         <section className="new-item-zone">
             <input id="new-item" type="text" placeholder="New item..." />
             <button onClick={addNewItem}>Add</button>
-         </div>
+         </section>
 
          {<TodoList type={'todo'} items={todoItems} onUpdate={updateLists} />}
          <div>------------------------</div>
