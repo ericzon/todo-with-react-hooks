@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 
-import itemList from '../../settings';
 import TodoSettings from '../todo-main-settings';
 import TodoFeedback from '../todo-feedback';
 import TodoList from '../todo-list';
 
 const findItemById = (list, item) => list.findIndex(listItem => listItem.id === item.id);
 
-function TodoMain(props) {
+function TodoMain({content}) {
+   const itemList = content;
+   console.log('TodoMain > content:', content);
    const [todoItems, setTodoItems] = useState(itemList);
    const [doneItems, setDoneItems] = useState([]);
 
