@@ -19,6 +19,19 @@ function TodoMain(props) {
       console.log('onDeselectAll');
    };
 
+   const addNewItem = () => {
+      const elem = document.getElementById('new-item');
+ console.log('addNewItem -> ', elem.value);
+      if (elem && elem.value !== '') {
+         setTodoItems([{
+            id: todoItems.length,
+            text: elem.value,
+            value: todoItems.length
+         }, ...todoItems]);
+         elem.value = '';
+      }
+   };
+
    const onToggleItemFn = itemChanged => {
       console.log('onToggleItemFn! ',itemChanged);
       updateLists(itemChanged);
@@ -57,14 +70,16 @@ function TodoMain(props) {
          <h1>My ToDo List</h1>
 
          <TodoFeedback todoItems={todoItems} />
-
          <TodoSettings onSelectAll={onSelectAllFn} onDeselectAll={onDeselectAllFn} />
 
          {todoItems.length ?
             <section className="todo-main-items">
                To-Do items:
                <ul className="todo-list">
-                  <li className="todo-item">New item...</li>
+                  <li className="todo-item">
+                     <input id="new-item" type="text" placeholder="New item..." />
+                     <button onClick={addNewItem}>Add</button>
+                  </li>
                   {todoItems.map((item, idx) => {
                      return <TodoRow type={'todo'} key={idx} item={item} onToggleItem={onToggleItemFn} />;
                   })}
